@@ -1,11 +1,11 @@
 process IVAR_VARIANTS {
     tag "$meta.id"
-    label 'process_medium'
+    label 'process_high'
 
     conda (params.enable_conda ? "bioconda::ivar=1.4" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/ivar:1.4--h6b7c446_1' :
-        'quay.io/biocontainers/ivar:1.4--h6b7c446_1' }"
+        'sereewit/ivar:1.4.2_49079e2' }"
 
     input:
     tuple val(meta), val(ref), path(bam)
